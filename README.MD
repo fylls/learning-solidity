@@ -492,7 +492,9 @@ contract MyInterface is ICounter {
 ### Sending Ethers
 
 `transfer`- (2300 gas, throws error)
+
 `send` - (2300 gas, returns bool)
+
 `call` -  (forward all gas or set gas, returns bool)
 
 ### ⚠️Warning
@@ -506,6 +508,7 @@ Which method should you use?
 
 
 `receive()` - external payable
+
 `fallback()` - external payable
 
 receive() is called if msg.data is empty, otherwise fallback() is called. A contract receiving Ether must have at least one of the functions below
