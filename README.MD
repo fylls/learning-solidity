@@ -2,7 +2,7 @@
 
 # Learning Solidity
 
-Notes from [this](https://www.youtube.com/playlist?list=PLvfQp12V0hS2PQd9-X-E2AjmXj1o05WOo) free Youtube Course by [HashLips](https://www.youtube.com/channel/UC1LV4_VQGBJHTJjEWUmy8nA)
+Notes from [this](https://www.youtube.com/playlist?list=PLvfQp12V0hS2PQd9-X-E2AjmXj1o05WOo) free Youtube course by [HashLips](https://www.youtube.com/channel/UC1LV4_VQGBJHTJjEWUmy8nA)
 
 ![solio](https://user-images.githubusercontent.com/55017307/142409945-cb25c3d0-34d1-4315-91f2-b98c9f176fe2.gif)
 
