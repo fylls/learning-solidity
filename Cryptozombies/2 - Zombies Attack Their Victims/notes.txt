@@ -1,0 +1,88 @@
+=========================================================================================================================================================
+
+The Ethereum blockchain is made up of accounts, which you can think of like bank accounts.
+An account has a balance of Ether (the currency used on the Ethereum blockchain)
+you can send and receive Ether payments to other accounts, just like your bank account can wire transfer money to other bank accounts.
+
+Each account has an address, which you can think of like a bank account number.
+It's a unique identifier that points to that account, and it looks like this:
+
+0x0cE446255506E92DF41614C46F1d6df9Cc969183
+
+an address is owned by a specific user (or a smart contract).
+
+=========================================================================================================================================================
+
+    MAPS 
+key = > value
+
+// For a financial app, storing a uint that holds the user's account balance:
+mapping (address => uint) public accountBalance;
+
+// Or could be used to store / lookup usernames based on userId
+mapping (uint => string) userIdToName;
+
+// in our game for istance
+mapping (uint => address) public zombieToOwner;
+
+=========================================================================================================================================================
+
+msg.sender
+
+In Solidity, there are certain global variables that are available to all functions.
+One of these is msg.sender, which refers to the address of the person (or smart contract) who called the current function.
+
+Note: In Solidity, function execution always needs to start with an external caller.
+A contract will just sit on the blockchain doing nothing until someone calls one of its functions. So there will always be a msg.sender.
+
+=========================================================================================================================================================
+
+String comparison
+
+// Compares if _name equals "Vitalik". Throws an error and exits if not true.
+// (Side note: Solidity doesn't have native string comparison, so we
+// compare their keccak256 hashes to see if the strings are equal)
+
+require( keccak256(abi.encodePacked("Vitalik")) == keccak256(abi.encodePacked(_name)) );
+
+=========================================================================================================================================================
+
+In Solidity, there are two locations you can store variables — in storage and in memory.
+Think of it like your computer's hard disk vs RAM.
+
+STORAGE
+refers to variables stored permanently on the blockchain.
+
+MEMORY
+variables are temporary, and are erased between external function calls to your contract.
+
+=========================================================================================================================================================
+
+INTERNAL
+is the same as private, except that it's also accessible to contracts that inherit from this contract.
+
+EXTERNAL
+is similar to public, except that these functions can ONLY be called outside the contract.
+they can't be called by other functions inside that contract.
+
+from PRIVATE to INTERNAL
+
+=========================================================================================================================================================
+
+INTERFACE
+For our contract to talk to another contract on the blockchain that we don't own, first we need to define an interface.
+By including this interface in our dapp's code our contract knows what the other contract's functions look like,
+how to call them, and what sort of response to expect.
+
+=========================================================================================================================================================
+
+// define KittyInterface named kittyContract, and initialize it with ckAddress
+KittyInterface kittyContract = KittyInterface(ckAddress)
+
+=========================================================================================================================================================
+
+implicit unsigned integer
+
+uint = uint256
+
+=========================================================================================================================================================

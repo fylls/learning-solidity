@@ -1,0 +1,96 @@
+=========================================================================================================================================================
+
+Solidity's code is encapsulated in contracts. A contract is the fundamental building block of Ethereum applications
+
+=========================================================================================================================================================
+
+State variables are permanently stored in contract storage.
+This means they're written to the Ethereum blockchain. Think of them like writing to a DB.
+
+=========================================================================================================================================================
+
+When you want a collection of something, you can use an array. There are two types of arrays in Solidity: fixed arrays and dynamic arrays
+
+=========================================================================================================================================================
+
+You can declare an array as public, and Solidity will automatically create a getter method for it.
+Other contracts would then be able to read from, but not write to, this array. So this is a useful pattern for storing public data in your contract.
+Person[] public people;
+
+=========================================================================================================================================================
+
+We're also providing instructions about where the _name variable should be stored- in memory.
+This is required for all reference types such as arrays, structs, mappings, and strings.
+function eatHamburgers(string memory _name, uint _amount)
+
+=========================================================================================================================================================
+
+there are two ways in which you can pass an argument to a Solidity function:
+
+BY VALUE
+the Solidity compiler creates a new copy of the parameter's value and passes it to your function.
+This allows your function to modify the value without worrying that the value of the initial parameter gets changed.
+
+BY REFERENCE
+which means that your function is called with a reference to the original variable.
+Thus, if your function changes the value of the variable it receives, the value of the original variable gets changed.
+
+=========================================================================================================================================================
+
+In Solidity, functions are public by default. This means anyone (or any other contract) can call your contract's function and execute its code.
+
+Obviously this isn't always desirable, and can make your contract vulnerable to attacks.
+Thus it's good practice to mark your functions as private by default, and then only make public the functions you want to expose to the world.
+
+=========================================================================================================================================================
+
+private
+
+function _addToArray(uint _number) private {
+  numbers.push(_number);
+  }
+
+This means only other functions within our contract will be able to call this function and add to the numbers array.
+it's convention to start private function names with an underscore (_).
+
+=========================================================================================================================================================
+
+
+function sayHello() public returns (string memory) {
+  return greeting;
+}
+
+In Solidity, the function declaration contains the type of the return value (in this case string).
+
+=========================================================================================================================================================
+
+pure
+
+Solidity also contains pure functions, which means you're not even accessing any data in the app. Consider the following:
+
+function _multiply(uint a, uint b) private pure returns (uint) {
+  return a * b;
+}
+
+This function doesn't even read from the state of the app — its return value depends only on its function parameters.
+So in this case we would declare the function as pure.
+
+=========================================================================================================================================================
+
+A hash function basically maps an input into a random 256-bit hexadecimal number.
+A slight change in the input will cause a large change in the hash.
+It's useful for many purposes in Ethereum, but for right now we're just going to use it for pseudo-random number generation.
+
+Note: Secure random-number generation in blockchain is a very difficult problem.
+
+=========================================================================================================================================================
+
+Events are a way for your contract to communicate that something happened on the blockchain to your app front-end,
+which can be 'listening' for certain events and take action when they happen.
+
+=========================================================================================================================================================
+
+Our Solidity contract is complete! Now we need to write a javascript frontend that interacts with the contract.
+Ethereum has a Javascript library called Web3.js.
+
+=========================================================================================================================================================

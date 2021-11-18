@@ -1,0 +1,69 @@
+=========================================================================================================================================================
+
+visibility modifiers that control when and where the function can be called from
+
+PRIVATE means it's only callable from other functions inside the contract
+
+INTERNAL is like private but can also be called by contracts that inherit from this one
+
+EXTERNAL can only be called outside the contract
+
+PUBLIC can be called anywhere, both internally and externally.
+
+=========================================================================================================================================================
+
+state modifiers, which tell us how the function interacts with the BlockChain:
+
+VIEW tells us that by running the function, no data will be saved/changed.
+
+PURE tells us that not only does the function not save any data to the blockchain, but it also doesn't read any data from the blockchain.
+
+Both of these don't cost any gas to call if they're called externally from outside the contract
+(but they do cost gas if called internally by another function)
+
+=========================================================================================================================================================
+
+PAYABLE functions are part of what makes Solidity and Ethereum so cool — they are a special type of function that can receive Ether.
+
+Note: If a function is not marked payable and you try to send Ether to it as above, the function will reject your transaction.
+
+After you send Ether to a contract, it gets stored in the contract's Ethereum account, and it will be trapped there
+unless you add a function to withdraw the Ether from the contract.
+
+=========================================================================================================================================================
+
+you cannot transfer Ether to an address unless that address is of type address payable.
+But the _owner variable is of type uint160, meaning that we must explicitly cast it to address payable.
+
+=========================================================================================================================================================
+
+you can transfer Ether to that address using the transfer function, and address(this).balance will return the total balance stored on the contract
+
+The price of Ether has gone up over 10x in the past year. So while 0.001 ether is about $1 at the time of this writing,
+if it goes up 10x again, 0.001 ETH will be $10 and our game will be a lot more expensive.
+
+So it's a good idea to create a function that allows us as the owner of the contract to set the levelUpFee.
+
+=========================================================================================================================================================
+
+All good games require some level of randomness. So how do we generate random numbers in Solidity?
+
+The real answer here is, you can't. Well, at least you can't do it safely.
+The best source of randomness we have in Solidity is the keccak256 hash function.
+
+uint randNonce = 0;
+uint random = uint(keccak256(abi.encodePacked(now, msg.sender, randNonce))) % 100;
+randNonce++;
+
+=========================================================================================================================================================
+
+So while this random number generation is NOT secure on Ethereum,
+in practice unless our random function has a lot of money on the line, the users of your game likely won't have enough resources to attack it.
+
+=========================================================================================================================================================
+
+Note: Remember, since we can pack uints inside structs, we want to use the smallest uints we can get away with.
+A uint8 is too small, since 2^8 = 256 — if our zombies attacked once per day, they could overflow this within a year.
+But 2^16 is 65536 — so unless a user wins or loses every day for 179 years straight, we should be safe here.
+
+=========================================================================================================================================================
