@@ -1,0 +1,100 @@
+=====================================================================================================================
+
+with open("./SimpleStorage.sol", "r") as file:
+    simple_storage_file = file.read()
+
+save ABI after coplilying
+
+=====================================================================================================================
+
+own local fake blockchain - GANACHE
+
+when we were first playing aroun we were using a javascript vm  or a fake or a simulated environment,
+we absolutely could and we absolutely will learn to deploy this to a test in because that's going to be the same way
+that we're going to deploy to a mainnet but before we do that, we should learn how to deploy this on a simulated
+environment or something similar to that javascript vm, so it's much faster and easier to test things.
+
+This is where ganache is going to come to the rescue, ganache is a simulated or a fake blockchain that we can
+actually use to deploy our smart contracts to and have it interact like it's a real blockchain.
+
+ganache is going to allow us to spin up our own local blockchain in just one click
+
+that means that this blockchain isn't connected to any other blockchain out there but it'll act like a blockchain
+and it'll be a lot faster than us having to interact with a testnet and we control the entire blockchain because
+it's only one node ,we're the only node.
+
+=====================================================================================================================
+
+don't hard code your private key
+in unix systems we can set vars in our terminal or cmd line
+
+export PRIVATE_KEY=0x4f3edf983ac636a65a842ce7c78d9aa706d3b113bce9c46f30d7d21715b23b1d
+
+env variable only works while shell is live if we close shell we lose the var (nnot persistent)
+howerer if we use .env file and don't push it to guithub it's both persistent and secure
+
+=====================================================================================================================
+
+CALLS VS TRANSACTS
+
+this is just to simulate making the call and getting a return value
+
+calls don't make a state change to the blockchain and it's similar to how in remix we would call these blue buttons
+and nothing on the blockchain would actually change.
+
+we can actually also call these orange buttons or these non-view functions and just not actually make a state change,
+remix defaults these blue buttons to be calls and these orange buttons to be transacts.
+
+in python we can actually pick which one we want to do a transact a transact call is when we actually make a state
+change and this is when we actually have to build a transaction and send a transaction you can always just call a
+function no matter what that function is but just keep in mind you won't make a state change you can also always
+transact on a function even if it's just a view and this will attempt to make a state change but will not.
+
+
+
+CALL            is just a simulation        no state change (no gas fee)
+TRANSACT        real execution              always attemps to chage the state
+
+=====================================================================================================================
+
+ganache-cli --deterministic 
+
+same private keys and addresses each time you call it
+
+127.0.0.1 localhost loop address
+1337 chain_id
+
+=====================================================================================================================
+
+INNFURA & ALCHEMY
+
+infura.io is an application that will give you a blockchain url for you to connect with for you to run whatever
+you want to run and you can get started for free 
+
+blockchain as a service
+
+fremium service - if too many calls they will start charging
+
+=====================================================================================================================
+
+always 0x to python private key
+
+if we want to send a transaction with our address (_from)
+the private key will be the only key able to sign it
+
+=====================================================================================================================
+
+nonce
+number of transaction our account has made
+
+=====================================================================================================================
+
+you can look chainid online
+rinkiby has id 4
+ganache has id 1337
+
+=====================================================================================================================
+
+to interact with contracts you always need ETH address and abi
+
+=====================================================================================================================

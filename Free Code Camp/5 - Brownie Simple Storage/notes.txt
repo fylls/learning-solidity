@@ -1,0 +1,215 @@
+
+
+now as you can see there's going to be a
+lot to actually managing all the
+contracts that we work with having to
+write our own compile code our own
+storage code is going to take a lot of
+work and what if we wanted to interact
+with one of the contracts that we
+deployed in the past well we'd have to
+keep track of all those addresses and
+manually update our address features
+here with an address maybe we didn't
+want to deploy a new contract every
+single time maybe we want to work with a
+contract that we've already deployed
+what if we want to work with a whole
+bunch of different chains what if we
+want to work with rink b and mainnet and
+our own local network there seems to be
+a lot to manage here and we still
+haven't even talked about writing tests
+this is where brownie is going to come
+into play brownie is currently the most
+popular smart contract development
+platform built based on python it's used
+by d5 giants like yearn.finance
+curve.phi and out each having billions
+of dollars currently locked in value and
+the reason that we learned a little bit
+about web3.pi first is because brownie
+
+
+ the build folder tracks a lot of
+really important low-level information
+it's going to track any interfaces that
+we're working with or deploying it's
+going to keep track of all of our
+deployments across all of the different
+chains so we no longer have to manage
+that ourselves
+and it's going to store all the compiled
+code remember how in our simple storage
+code we actually saved everything to
+this compile code.json well brownie is
+actually going to do all of that for us
+into this contracts directory so we can
+always reference it later this contracts
+directory outside the build folder is
+where we're going to put all of our
+contracts brownie knows to look inside
+of this folder when looking for new
+contracts to compile deploy or anything
+else interfaces is where we can save and
+store different interfaces remember how
+when we were working with chain link
+working with interfaces makes it really
+easy to interact with a blockchain
+application reports are to save any type
+of report you run scripts or we can
+automate tasks like deploying calling
+different functions or really anything
+we want and then we have a test folder
+which is incredibly powerful and we're
+
+
+
+
+
+=====================================================================================================================
+
+brownie access automatically ganache
+
+brownie keeps tracts of all thye deploys across all the different chanins
+
+interface makes easy to interact with blockcahin
+
+=====================================================================================================================
+
+BROWNIE SHELL SCRIPTS
+
+>>> brownie init
+
+>>> brownie compile
+
+>>> brownie accounts new nameOfAccount
+
+>>> brownie accounts list
+
+>>> brownie accounts delete nameOfAccount
+
+>>> brownie run scripts/name.py
+
+>>> brownie test
+
+>>> brownie test -s
+
+>>> brownie test -k nameOfTest
+
+>>> brownie test --pdb
+(openn python shell, debugging)
+
+>>> brownie networks list
+
+>>> brownie run scripts/name.py --network rinnkeby
+
+=====================================================================================================================
+
+BROWNIE ADD
+
+>>> brownie accounts new account-name
+account = accounts.load("name of account")
+
+or
+
+accounts.add(config["wallets"]["from_key"])
+accounts.add(os.getenv("PRIVATE_KEY"))
+
+=====================================================================================================================
+
+>>> brownie accounts new account-name
+account = accounts.load("name of account")
+
+best way to store your key
+brownie password encrypts yout keys
+
+env variable are still faster, less secure tho
+never put your private key: You should not trust yourself that much
+
+encrypt command line
+
+=====================================================================================================================
+
+functions that write on the blockchain always need _from as a parameter
+
+=====================================================================================================================
+
+security is important in solidity
+need to write testings
+once the code is deployed it cannot be changed
+
+=====================================================================================================================
+
+TESTINNG FRAMEWORK arrange act assert
+
+=====================================================================================================================
+
+>>> brownie networks list
+
+every network under "development env" will be torn down after execution
+ethereum one will be persistent
+
+=====================================================================================================================
+
+brownie cann connnect with infura networks
+
+account[0] only works with ganache CLI
+
+stored_value = simple_storage.retrieve()  # no from field sice it's a view function
+transaction = simple_storage.store(15, {"from": account}) # transaction needs from field
+transaction.wait(1)  # how many block we want to wait
+
+=====================================================================================================================
+
+brownie console
+
+brownie shell is a python shell with all of our smart contract features already natively integrated. very powerful
+
+
+>>> SimpleStorage
+[]
+
+>>> account = accounts[0]
+>>> account
+<Account '0x66aB6D9362d4F35596279692F0251Db635165871'>
+
+>>> simple_storage = SimpleStorage.deploy({"from": account})
+Transaction sent: 0xf1bb4e6f4e54bd8cdc1c9d949dfc26ac724587745ca7a5e35742fe60535a4e7c
+  Gas price: 0.0 gwei   Gas limit: 12000000   Nonce: 0
+  SimpleStorage.constructor confirmed   Block: 1   Gas used: 335464 (2.80%)
+  SimpleStorage deployed at: 0x3194cBDC3dbcd3E11a07892e7bA5c3394048Cc87    
+
+>>> simple_storage
+<SimpleStorage Contract '0x3194cBDC3dbcd3E11a07892e7bA5c3394048Cc87'>
+
+>>> SimpleStorage
+[<SimpleStorage Contract '0x3194cBDC3dbcd3E11a07892e7bA5c3394048Cc87'>]
+
+>>> len(SimpleStorage)
+1
+
+>>> simple_storage = SimpleStorage.deploy({"from": account})
+Transaction sent: 0x8aeb0112e73550a350c80f162275714a838df5f8ffe39d8f24984e9d6c311e8a
+  Gas price: 0.0 gwei   Gas limit: 12000000   Nonce: 1
+  SimpleStorage.constructor confirmed   Block: 2   Gas used: 335464 (2.80%)
+  SimpleStorage deployed at: 0x602C71e4DAC47a042Ee7f46E0aee17F94A3bA0B6    
+
+>>> len(SimpleStorage)
+2
+
+>>> simple_storage.retrieve()
+0
+
+>>> simple_storage.store(15, {"from": account})
+Transaction sent: 0x8e15adad8f35d811132d3034ee089c2f8b991df5be1125f80fe3e3df51baaec4
+  Gas price: 0.0 gwei   Gas limit: 12000000   Nonce: 2
+  SimpleStorage.store confirmed   Block: 3   Gas used: 41393 (0.34%)
+
+<Transaction '0x8e15adad8f35d811132d3034ee089c2f8b991df5be1125f80fe3e3df51baaec4'>
+
+>>> simple_storage.retrieve()
+15
+
+
+

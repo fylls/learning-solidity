@@ -1,0 +1,6 @@
+dotenv: .env
+
+# this tells brownie to always pull PRIVATE_KEY from .env
+
+wallets:
+  from_key: ${PRIVATE_KEY}

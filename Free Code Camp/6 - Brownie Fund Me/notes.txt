@@ -1,0 +1,21 @@
+brownie cann't read from npm but can from github
+
+removing imports with actual code is called flattening
+
+contract cann be publicly read on etherscann
+publish_source=True
+
+if test folde in contracts it will be a mock
+
+addinng every evm blockcahin avalanche polygonn solana etc  
+
+>>> brownie networks add Ethereum ganache-local host=http://127.0.0.1:8545 chainid=1337
+
+>>> brownie networks add development mainnet-forked-dev cmd=gananche-cli host=http://127.0.0.1:8545  fork='https://mainnet.infura.io/v3/$WEB3_INNFURA_PROJECT_ID' accounts=10 nmemonic=brownie
+>>> brownie networks add development mainnet-forked-dev cmd=gananche-cli host=http://127.0.0.1:8545  fork='alchemy project url' accounts=10 nmemonic=brownie
+
+forking from infura is terrible permormance
+anchemy is better
+
+if you work on live ganache, if you close window you are gonnna lose all your contracts
+so delete all entries inside build folder of chainnid 1337 and map

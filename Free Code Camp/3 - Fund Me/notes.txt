@@ -1,0 +1,82 @@
+=====================================================================================================================
+
+mapping(address => uint256) public addressToAmountFunded;
+
+function fund() public payable {
+    addressToAmountFunded[msg.sender] += msg.value;
+}
+
+=====================================================================================================================
+
+CHAIN LINK
+
+having a decentralized network bring this data on chain and have it as a reference point of definitive truth
+allows users to all collaborate and use this common good and it will be cheaper more secure more efficient
+than anybody even running their own centralized oracle so these price feeds are incredibly powerful.
+
+additionally they're being used by some of the top protocols in the defy system right now like synthetics which
+at the time of recording is securing around 2 billion $, sushi swap for leveraging trades set protocol commodity
+money ave for understanding the price of an underlying collateral now this is an example of an out of the box
+decentralized solution that's already been packaged in the decentralized manner for you to consume and for you
+to use this makes going to production a thousand times easier than building everything yourself
+
+=====================================================================================================================
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.6.7;
+
+import "@chainlink/contracts/src/v0.6/interfaces/AggregatorV3Interface.sol";
+
+contract PriceConsumerV3 {
+
+    AggregatorV3Interface internal priceFeed;
+
+    /**
+     * Network: Kovan
+     * Aggregator: ETH/USD
+     * Address: 0x9326BFA02ADD2366b30bacB125260Af641031331
+     */
+    constructor() public {
+        priceFeed = AggregatorV3Interface(0x9326BFA02ADD2366b30bacB125260Af641031331);
+    }
+
+    /**
+     * Returns the latest price
+     */
+    function getLatestPrice() public view returns (int) {
+        (
+            uint80 roundID, 
+            int price,
+            uint startedAt,
+            uint timeStamp,
+            uint80 answeredInRound
+        ) = priceFeed.latestRoundData();
+        return price;
+    }
+}
+
+=====================================================================================================================
+
+when we deploy this we are set as the owner.
+
+we can allow anybody to fund whatever public good that we're doing
+
+and they have to fund it with the minimum usd value that we actually set.
+
+whenever they fund we'll keep track of how much they're funding and who's been funding us.
+
+we can get the price of the ethereum that they send in the terms of usd,
+and we can convert it to check to see if they're sending us the right amount.
+
+we have our only owner modifier so that we're the only ones who can withdraw from the contract,
+and when we do withdraw everything from the contract we reset all the funders who have currently
+participated in our crowdsourcing application.
+
+=====================================================================================================================
+
+require false
+
+revert trasaction
+money not spent
+
+=====================================================================================================================

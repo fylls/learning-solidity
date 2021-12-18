@@ -1,0 +1,96 @@
+=====================================================================================================================
+
+test environtmet javascript VM
+
+=====================================================================================================================
+
+0.6.6 however in future contracts thatwe work with we're actually going to work with different versions of solidity,
+the reason we're going to be changing versions throughout this course is that solidity is a constantly updating
+language being good at switching between versions is going to make you an incredibly powerful smart contract engineer
+
+=====================================================================================================================
+
+DATA TYPES
+
+uint256 MyUint = 14;
+bool myBool = true;
+int256 myInt = -5;
+address myAddress = 0x306BFc430FbE5c8D3469e2472bBEb27235a158d3:
+bytes32 myBytes = "cat";
+
+number indicates #bits except bytes
+
+=====================================================================================================================
+
+VISIBILITY
+
+exteral - eeds to be called by a exteral cotract
+public - everyone can call it (users & contracts)
+interal - only callable by fuctions inside contract or derived
+private - only callable by fuctions inside cotract, no derived
+
+default is interal
+
+public variable == global or contract scope
+
+=====================================================================================================================
+
+public variable makes eables us to see it from the outside ( it is callable) -
+not good practice, it is best to create a view function to retrive the iternal value
+
+=====================================================================================================================
+
+transactions == smart contract interactions == function calls
+
+on a blockchain whenever you call a function or whenever you make some state change to the blockchain you're
+actually also making a transaction that's what makes this whole thing so powerful and again that's why making
+a function call or deploying a contract costs a little bit of gas 
+
+=====================================================================================================================
+
+view function
+
+when i click it i get to view and i get to read the state off the blockchain retrieve is the same way we could have
+this without a return but it wouldn't do anything
+
+pure functions
+
+functions that purely do some type of math here, but we're not actually saving state anywhere
+
+it's blue because it's not going to change the state of the blockchain so view functions and
+pure functions are both can have this blue color
+
+orange = peyable = writes to blockchain
+
+=====================================================================================================================
+
+People[] public people; // dynamic
+People[2] public duo;  // static
+People[3] public trio; // static
+
+People public person = People({number:2, name: "parick"})
+People public person = People(2, "parick"})
+
+=====================================================================================================================
+
+memory vs storage
+
+memory =  only stored duing function execution
+
+storage = data persists after function is executed
+
+=====================================================================================================================
+
+// SPDX-License-Identifier: MIT
+
+=====================================================================================================================
+
+from js vm to mainet (injected web3) -> metamask opens
+
+=====================================================================================================================
+
+eth virtual machine EVM
+
+all the solidity code that we're working with gets compiled down to the ethereum virtual machine
+
+=====================================================================================================================
